@@ -39,16 +39,16 @@ window.onload = function() {
 
     });
     delCounter = setInterval(delEl, 1000);
-    // var lastTouchEnd = 0;
-    // document.documentElement.addEventListener('touchend', function (event) {
-    //     var now = Date.now();
-    //     if (now - lastTouchEnd <= 300) {
-    //         event.preventDefault();
-    //     }
-    //     lastTouchEnd = now;
-    // }, {
-    //     passive: false
-    // });
+    var lastTouchEnd = 0;
+    document.documentElement.addEventListener('touchend', function (event) {
+        var now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, {
+        passive: false
+    });
     // $(".wrapper").hover(function(){
     //     //$(this).css("background-color", "yellow");
     //     }, function(){
