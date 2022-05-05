@@ -38,35 +38,23 @@ window.onload = function() {
         passive: false
 
     });
-
-    // SubmitInformation();
-    // new TextDesintegrator($('.ScoreFont')[0]);
     delCounter = setInterval(delEl, 1000);
-    // delCounter = setInterval(function (){
-    //
-    //     clearInterval(delCounter);
-    //
-    // }, 1000);
-    // window.setInterval(function () {
-    //     console.log(Math.max(50, 600 - 100 * st.length));
-    //     setTimeout(delCounter, Math.max(50, 1000 - 100 * st.length));
-    // }, 20);
-    var lastTouchEnd = 0;
-    document.documentElement.addEventListener('touchend', function (event) {
-        var now = Date.now();
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, {
-        passive: false
-    });
-    $(".wrapper").hover(function(){
-        //$(this).css("background-color", "yellow");
-        }, function(){
-            closeDoor($(this));
-        //$(this).css("background-color", "pink");
-      });
+    // var lastTouchEnd = 0;
+    // document.documentElement.addEventListener('touchend', function (event) {
+    //     var now = Date.now();
+    //     if (now - lastTouchEnd <= 300) {
+    //         event.preventDefault();
+    //     }
+    //     lastTouchEnd = now;
+    // }, {
+    //     passive: false
+    // });
+    // $(".wrapper").hover(function(){
+    //     //$(this).css("background-color", "yellow");
+    //     }, function(){
+    //         closeDoor($(this));
+    //     //$(this).css("background-color", "pink");
+    //   });
     e_tot = document.getElementById('totScore');
     $(e_tot).addClass('totScore');
     $(e_tot).text('0');
@@ -116,7 +104,12 @@ let firstClick = 1;
 let v_tot = 0;
 let remain_click = 100;
 let st = [];
+let last_door = -1;
 function openDoor(field) {
+    if(last_door != $(field).index()) {
+        if(last_door != -1) closeDoor($('.wrapper')[last_door]);
+        last_door = $(field).index();
+    }
     // console.log($('.gameBody').indexOf((field)));
     console.log($(field).index());
     if(remain_click == 0) {
